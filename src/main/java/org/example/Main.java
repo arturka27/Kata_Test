@@ -5,12 +5,20 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Main {
+    public static void main(String[] args) throws Exception {
+        System.out.println(calc("8 + 6"));
+        System.out.println(calc("X - IV"));
+        System.out.println(calc("7 * 7"));
+        System.out.println(calc("VIII / II"));
+        System.out.println(calc("VI - 4"));
+
+    }
     public static String calc(String input) throws Exception {
 
         int x1;
         int x2;
         String sign;
-        String result = null;
+        int result = 0;
         boolean isRomanCalc = false;
         String[] romanLowNumbers = {"I","II","III","IV","V","VI","VII","VIII","IX","X"};
         String[] romanHightNumbers = {"X","XX","XXX","XL","L","LX","LXX","LXXX","XC","C"};
@@ -19,7 +27,6 @@ public class Main {
         for (int i = 0; i < 10; i++) {
             romanNumbers.put(romanLowNumbers[i],i+1);
         }
-
 
         String[] inputs = input.split(" ");
         if(inputs.length > 3) {
@@ -38,32 +45,31 @@ public class Main {
 
         switch (sign) {
             case "+" -> {
-                result = String.valueOf(x1 + x2);
+                result = x1 + x2;
                 break;
             }
             case "-" -> {
-                result = String.valueOf(x1 - x2);
+                result = x1 - x2;
                 break;
             }
             case "*" -> {
-                result = String.valueOf(x1*x2);
+                result = x1 * x2;
                 break;
             }
             case "/" -> {
-                result = String.valueOf(x1/x2);
+                result = x1 / x2;
                 break;
             }
         }
 
         if(isRomanCalc){
-            int count = Integer.parseInt(result);
-            if(count>10) {
-                return (romanHightNumbers[count/10-1] + romanLowNumbers[count%10-1]);
+            if(result>10) {
+                return (romanHightNumbers[result / 10 - 1] + romanLowNumbers[result % 10 - 1]);
             }else {
-               return romanLowNumbers[count-1];
+               return romanLowNumbers[result - 1];
             }
         }
 
-        return result;
+        return String.valueOf(result);
     }
 }
