@@ -1,17 +1,15 @@
 package org.example;
-
-import javax.print.DocFlavor;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        System.out.println(calc("8 + 6"));
-        System.out.println(calc("X - IV"));
-        System.out.println(calc("7 * 7"));
-        System.out.println(calc("VIII / II"));
-        System.out.println(calc("VI - 4"));
-
+            try (Scanner scanner = new Scanner(System.in)) {
+                while (true) {
+                System.out.println(calc(scanner.nextLine()));
+            }
+        }
     }
     public static String calc(String input) throws Exception {
 
@@ -29,13 +27,13 @@ public class Main {
         }
 
         String[] inputs = input.split(" ");
-        if(inputs.length > 3) {
-            throw new Exception("Данный калькулятор может работать только с двумя переменными!");
-        }
-
+        if(inputs.length > 3)
+            return "Данный калькулятор может работать только с двумя переменными!";
         try {
             x1 = Integer.parseInt(inputs[0]);
             x2 = Integer.parseInt(inputs[2]);
+            if(x1 <= 0 || x2 <= 0 || x1 > 10 || x2 > 10)
+                return "Числа должны быть от 0 до 10";
         }catch (Exception e){
             isRomanCalc = true;
             x1 = romanNumbers.get(inputs[0]);
