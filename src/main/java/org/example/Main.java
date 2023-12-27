@@ -35,7 +35,7 @@ public class Main {
             x1 = Integer.parseInt(inputs[0]);
             x2 = Integer.parseInt(inputs[2]);
             if (x1 <= 0 || x2 <= 0 || x1 > 10 || x2 > 10)
-                return "Числа должны быть от 0 до 10";
+                return "Числа должны быть от 1 до 10 включительно";
         } catch (Exception e) {
             isRomanCalc = true;
             x1 = romanNumbers.get(inputs[0]);
