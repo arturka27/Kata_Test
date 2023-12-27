@@ -1,16 +1,18 @@
 package org.example;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-            try (Scanner scanner = new Scanner(System.in)) {
-                while (true) {
+        try (Scanner scanner = new Scanner(System.in)) {
+            while (true) {
                 System.out.println(calc(scanner.nextLine()));
             }
         }
     }
+
     public static String calc(String input) throws Exception {
 
         int x1;
@@ -18,23 +20,23 @@ public class Main {
         String sign;
         int result = 0;
         boolean isRomanCalc = false;
-        String[] romanLowNumbers = {"I","II","III","IV","V","VI","VII","VIII","IX","X"};
-        String[] romanHightNumbers = {"X","XX","XXX","XL","L","LX","LXX","LXXX","XC","C"};
-        Map <String,Integer> romanNumbers = new HashMap<>();
+        String[] romanLowNumbers = {"I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"};
+        String[] romanHightNumbers = {"X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC", "C"};
+        Map<String, Integer> romanNumbers = new HashMap<>();
 
         for (int i = 0; i < 10; i++) {
-            romanNumbers.put(romanLowNumbers[i],i+1);
+            romanNumbers.put(romanLowNumbers[i], i + 1);
         }
 
         String[] inputs = input.split(" ");
-        if(inputs.length > 3)
+        if (inputs.length > 3)
             return "Данный калькулятор может работать только с двумя переменными!";
         try {
             x1 = Integer.parseInt(inputs[0]);
             x2 = Integer.parseInt(inputs[2]);
-            if(x1 <= 0 || x2 <= 0 || x1 > 10 || x2 > 10)
+            if (x1 <= 0 || x2 <= 0 || x1 > 10 || x2 > 10)
                 return "Числа должны быть от 0 до 10";
-        }catch (Exception e){
+        } catch (Exception e) {
             isRomanCalc = true;
             x1 = romanNumbers.get(inputs[0]);
             x2 = romanNumbers.get(inputs[2]);
@@ -60,11 +62,11 @@ public class Main {
             }
         }
 
-        if(isRomanCalc){
-            if(result>10) {
+        if (isRomanCalc) {
+            if (result > 10) {
                 return (romanHightNumbers[result / 10 - 1] + romanLowNumbers[result % 10 - 1]);
-            }else {
-               return romanLowNumbers[result - 1];
+            } else {
+                return romanLowNumbers[result - 1];
             }
         }
 
